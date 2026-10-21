@@ -1,93 +1,158 @@
-# DNS-Flooding 
 
-A Python-based experimental tool for exploring DNS packet construction, asynchronous UDP networking, query strategies, and runtime statistics.
+# DNS-Flooding
 
-[!WARNING] Authorized testing and educational use only. High-volume DNS traffic can disrupt network services. Use this project only in an isolated lab or against DNS infrastructure you own or have explicit permission to test. Do not use it to attack public DNS resolvers or third-party systems.
+A Python-based experimental project for exploring DNS packet construction, asynchronous UDP networking, query strategies, and runtime statistics.
 
-Overview 
+[![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-DNS-Flooding is an experimental Python project designed to demonstrate DNS packet construction and asynchronous network communication.
+> [!WARNING]
+> **For educational and authorized testing only.** High-volume DNS traffic can disrupt network services. Only use this project in an isolated lab or against systems you own or have explicit permission to test. Never use it to attack public DNS resolvers or third-party infrastructure.
 
-The project explores different DNS query types, concurrent UDP operations, basic strategy selection, logging, and execution statistics.
+## Overview
 
-Features DNS packet construction — Creates DNS query packets using Python. Multiple query strategies — Includes randomized subdomain, EDNS-related, ANY, and TXT query construction. Asynchronous networking — Uses Python's asyncio framework and UDP datagrams. Strategy weighting — Applies a basic heuristic to adjust strategy weights. Logging — Records operation details and errors. Runtime statistics — Displays execution statistics and strategy weights. Configurable parameters — Supports configuration of target information and execution settings in the script. Requirements Python 3.10 or newer recommended Git A terminal or command-line environment An authorized DNS server for any network testing 
+DNS-Flooding is an experimental Python project that explores DNS packet construction and asynchronous UDP communication.
+
+It demonstrates different DNS query strategies, concurrent network operations, basic strategy weighting, logging, and runtime statistics.
+
+## Features
+
+- **DNS Packet Construction** - Builds DNS query packets using Python.
+- **Multiple Query Strategies** - Includes randomized subdomain, EDNS-related, `ANY`, and `TXT` query construction.
+- **Asynchronous Networking** - Uses Python's `asyncio` framework and UDP datagrams.
+- **Strategy Weighting** - Uses a basic heuristic to adjust strategy weights.
+- **Logging** - Records operation details and errors.
+- **Runtime Statistics** - Reports execution statistics and strategy weights.
+- **Configurable Parameters** - Supports target and execution configuration in the script.
+
+## Requirements
+
+- Python 3.10 or newer recommended
+- Git
+- A terminal or command-line environment
+- An authorized DNS server for network testing
 
 The project uses Python standard-library modules. No third-party package installation is expected for the current script.
 
-Installation 
-1. Clone the repository 
+## Installation
 
-Open your terminal and run:
+### 1. Clone the Repository
 
-git clone 
-https://github.com/Mireli5656/Dns-Flooding.git 
+```bash
+git clone https://github.com/Mireli5656/Dns-Flooding.git
+```
 
-2. Enter the project directory cd Dns-Flooding
+### 2. Navigate to the Project Directory
 
-3. Check your Python installation python3 --version 
+```bash
+cd Dns-Flooding
+```
 
-If your system uses python instead of python3, check with:
-
-python --version Usage 1. Review the configuration 
-
-Open Dnsflooding.py in a text editor and review the configuration values before running the script.
-
-Make sure any destination is a test server you own or are explicitly authorized to assess. Use conservative settings in a controlled environment.
-
-2. Run the script 
+### 3. Check Python
 
 On Linux, macOS, or Termux:
 
-python3 Dnsflooding.py 
+```bash
+python3 --version
+```
 
 On Windows:
 
-python Dnsflooding.py 
+```powershell
+python --version
+```
 
-3. Review the output 
+## Usage
 
-Follow the terminal output to inspect execution information and any statistics the program reports.
+### 1. Review the Configuration
 
-If the script creates ai_dns_operations.log, inspect that file for logged operations and errors.
+Open `Dnsflooding.py` in a text editor and review its configuration before execution.
 
-[!NOTE] The commands above start the Python script; they do not guarantee that the configured DNS server will respond successfully. Review the script's configuration and output to understand what it actually does.
+Only configure destinations you own or are explicitly authorized to test. Use conservative settings in a controlled environment.
 
-Project Structure 
-Dns-Flooding/ 
-├── Dnsflooding.py 
-├── README.md 
-└── LICENSE 
-Logging and Statistics 
+### 2. Run the Script
 
-The program may record operational details in:
+On Linux, macOS, or Termux:
 
-ai_dns_operations.log 
+```bash
+python3 Dnsflooding.py
+```
 
-Depending on the execution path, logs can include timestamps, strategy information, packet sizes, and errors.
+On Windows:
 
-Dispatching a UDP packet successfully does not prove that the destination received or processed it. Similarly, a strategy's success counter should not be interpreted as verified DNS resolution unless DNS responses are explicitly checked.
+```powershell
+python Dnsflooding.py
+```
 
-Limitations Strategy weighting is a basic heuristic, not a trained AI model. DNS responses are not necessarily validated. The script does not provide comprehensive DNS response-latency measurements. EDNS-related packet construction requires independent protocol validation. High concurrency can consume resources and affect network services. Results from a single test environment cannot establish general DNS server performance or reliability. Responsible Use 
+### 3. Review the Output
 
-Please follow these guidelines:
+Follow the terminal output for execution information and reported statistics.
 
-Obtain authorization before testing any DNS server. Use an isolated test environment whenever possible. Apply strict traffic and runtime limits. Monitor resource usage during testing. Stop testing immediately if unexpected service degradation occurs. Never use this project to disrupt, overload, or deny service to other users. 
+If generated, inspect the log file:
+
+```text
+ai_dns_operations.log
+```
+
+> [!NOTE]
+> Running the script does not guarantee that the destination DNS server received, processed, or answered the queries. Review the code and output to understand what the reported statistics measure.
+
+## Project Structure
+
+```text
+Dns-Flooding/
+├── Dnsflooding.py
+├── README.md
+└── LICENSE
+```
+
+## Logging and Statistics
+
+The script may record operational information in `ai_dns_operations.log`, including timestamps, strategy details, packet sizes, and errors.
+
+Successful UDP packet dispatch does not necessarily indicate successful DNS resolution. DNS responses must be validated separately to measure actual resolution success and latency.
+
+## Limitations
+
+- Strategy weighting is a basic heuristic, not a trained AI model.
+- DNS responses are not necessarily validated.
+- Comprehensive DNS response-latency measurements are not provided.
+- EDNS-related packet construction requires independent protocol validation.
+- High concurrency can consume resources and affect network services.
+- Results from one environment do not establish general DNS server performance or reliability.
+
+## Responsible Use
+
+- Obtain permission before testing any DNS server.
+- Prefer isolated test environments.
+- Apply strict traffic and runtime limits.
+- Monitor resource usage during testing.
+- Stop immediately if unexpected service degradation occurs.
+- Never use this project to disrupt services or overload third-party infrastructure.
 
 The author does not encourage unauthorized activity or malicious use of this software.
 
-Contributing 
+## Contributing
 
-Contributions that improve code quality, documentation, error handling, protocol correctness, and safe testing practices are welcome.
+Contributions that improve documentation, code quality, error handling, DNS protocol correctness, and safe testing practices are welcome.
 
-Fork the repository. Create a feature branch. Make your changes. Test your changes in an authorized environment. Submit a pull request with a clear description. License 
+1. Fork the repository.
+2. Create a feature branch.
+3. Make your changes.
+4. Test your changes in an authorized environment.
+5. Submit a pull request with a clear description.
 
-This project is distributed under the MIT License. See the LICENSE file for details.
+## License
 
-# Author 
+This project is distributed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-Mireli5656❤
+## Author
 
-GitHub: @Mireli5656 Repository: DNS-Flooding 
+**Mireli5656**
+
+- GitHub: [@Mireli5656](https://github.com/Mireli5656)
+- Repository: [DNS-Flooding](https://github.com/Mireli5656/Dns-Flooding)
+
+---
 
 If you find this project useful for learning about DNS protocols and Python networking, consider giving the repository a star.
-

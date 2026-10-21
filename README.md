@@ -21,7 +21,9 @@ Open your terminal and run:
 
 git clone 
 https://github.com/Mireli5656/Dns-Flooding.git 
+
 2. Enter the project directory cd Dns-Flooding
+
 3. Check your Python installation python3 --version 
 
 If your system uses python instead of python3, check with:
